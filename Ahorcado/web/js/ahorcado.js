@@ -1,11 +1,21 @@
-let palabras = [["atlantico", "Un océano"], ["Computadora", "Una máquina"], ["Asus", "Marca de Computadoras"], ["plaza", "Espacio público"], ["rueda", "Gran invento"]];
+let palabras = [
+  ["Elefante", ["Mamífero terrestre", "Posee trompa larga", "Vive en manadas"]],
+  ["Horizonte", ["Límite visual", "Divide cielo y tierra", "Depende de la perspectiva"]],
+  ["Volcanes", ["Expulsan lava", "Generan gases", "Pueden ser activos o inactivos"]],
+  ["Software", ["Conjunto de programas", "Intangible", "Controla el hardware"]],
+  ["Baterias", ["Almacenan energía", "Suministran corriente", "Pueden recargarse"]]
+];
+
 let palabra = "";
 let random;
 let oculta = [];
-const hueco = document.getElementById("palabra");
 let cont = 6;
+let tiempoRestante=121;
+let temporizador;
+
+const hueco = document.getElementById("palabra");
 const buttons = document.getElementsByClassName('letra');
-const btnInicio = document.getElementById("reset");
+const btnInicio = document.getElementById("reinicio");
 
 // Escoger palabra al azar
 function generaPalabra() {
@@ -14,99 +24,164 @@ function generaPalabra() {
   console.log(palabra);
 }
 
-// Funcion para pintar los guiones de la palabra
+function iniciarTemporizador() {
+    clearInterval(temporizador);
+    enPausa = false;
+    document.getElementById("tempo").innerHTML = tiempoRestante + " segundos";
+
+    temporizador = setInterval(() => {
+        if (!enPausa) {
+            if (tiempoRestante > 0) {
+                document.getElementById("tempo").innerHTML = tiempoRestante + " segundos";
+                tiempoRestante--;
+            } else {
+                document.getElementById("tempo").innerHTML = "0 segundos";
+                window.alert("Perdiste el juego :(");
+                clearInterval(temporizador);
+            }
+        }
+    }, 1000);
+}
+
+function pausarTemporizador() {
+    document.getElementById('stop').style.display = "none";
+    document.getElementById('reanudar').style.display = "block";
+    enPausa = true;
+    for (let i = 0; i < buttons.length; i++) {
+        buttons[i].disabled = true;
+      }
+}
+
+function reanudarTemporizador() {
+    document.getElementById('reanudar').style.display = "none";
+    enPausa = false;
+    document.getElementById('stop').style.display = "block";
+    for (let i = 0; i < buttons.length; i++) {
+        buttons[i].disabled = false;
+      }
+}
+
+// Funcion para agregar los guiones de la palabra
 function pintarGuiones(num) {
-  for (let i = 0; i < num; i++) {
-    oculta[i] = "_";
-  }
-  hueco.innerHTML = oculta.join(" ");
+    oculta = [];
+    for (let i = 0; i < num; i++) {
+        oculta[i] = "_";
+    }
+    hueco.innerHTML = oculta.join(" ");
 }
 
 // Generar abecedario
-function generaABC(a, z) {
-  document.getElementById("abcdario").innerHTML = "";
-  let i = a.charCodeAt(0), j = z.charCodeAt(0);
-  let letra = "";
-  for (; i <= j; i++) {
-    letra = String.fromCharCode(i).toUpperCase();
-    document.getElementById("abcdario").innerHTML += "<button value='" + letra + "' onclick='intento(\"" + letra + "\")' class='letra' id='" + letra + "'>" + letra + "</button>";
-    if (i == 110) {
-      document.getElementById("abcdario").innerHTML += "<button value='Ñ' onclick='intento(\"Ñ\")' class='letra' id='" + letra + "'>Ñ</button>";
+function GenerarLetras() {
+    const contenedor = document.getElementById("abcdario");
+    const letras = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ";
+    
+    contenedor.innerHTML = "";
+    
+    for (let letra of letras) {
+        let btn = document.createElement("button");
+        btn.textContent = letra;
+        btn.value = letra;
+        btn.id = letra;
+        btn.className = "letra";
+        btn.onclick = () => intento(letra);
+        contenedor.appendChild(btn);
     }
-  }
 }
 
 // Chequear intento
 function intento(letra) {
-  document.getElementById(letra).disabled = true;
-  if (palabra.indexOf(letra) != -1) {
-    for (let i = 0; i < palabra.length; i++) {
-      if (palabra[i] == letra) oculta[i] = letra;
+    document.getElementById(letra).disabled = true;
+    if (palabra.indexOf(letra) != -1) {
+      for (let i = 0; i < palabra.length; i++) {
+        if (palabra[i] == letra) oculta[i] = letra;
+      }
+      hueco.innerHTML = oculta.join(" ");
+      document.getElementById("acierto").innerHTML = "Bien!";
+      document.getElementById("acierto").className += "acierto verde";
+    } else {
+      cont--;
+      document.getElementById("intentos").innerHTML = cont;
+      document.getElementById("acierto").innerHTML = "Fallo!";
+      document.getElementById("acierto").className += "acierto rojo";
+      document.getElementById("image" + cont).className += "fade-in";
     }
-    hueco.innerHTML = oculta.join(" ");
-    document.getElementById("acierto").innerHTML = "Bien!";
-    document.getElementById("acierto").className += "acierto verde";
-  } else {
-    cont--;
-    document.getElementById("intentos").innerHTML = cont;
-    document.getElementById("acierto").innerHTML = "Fallo!";
-    document.getElementById("acierto").className += "acierto rojo";
-    document.getElementById("image" + cont).className += "fade-in";
-  }
-  compruebaFin();
-  setTimeout(function () {
-    document.getElementById("acierto").className = "";
-  }, 800);
+    compruebaFin();
+    setTimeout(function () {
+      document.getElementById("acierto").className = "";
+    }, 800);
 }
 
 // Obtener pista
-function pista() {
-  document.getElementById("hueco-pista").innerHTML = palabras[random][1];
-}
+    function pista() {
+        let pistas = palabras[random][1];
+        document.getElementById("hueco-pista").innerHTML = pistas[indicePista];
+        indicePista++;
+
+        if (indicePista >= pistas.length) {
+            indicePista = 0;
+        }
+    }
 
 // Comprueba si ha finalizado
 function compruebaFin() {
-  if (oculta.indexOf("_") == -1) {
-    document.getElementById("msg-final").innerHTML = "Felicidades !!";
-    document.getElementById("msg-final").className += "zoom-in";
-    document.getElementById("palabra").className += " encuadre";
-    for (let i = 0; i < buttons.length; i++) {
-      buttons[i].disabled = true;
+    if (oculta.indexOf("_") == -1) {
+      pausarTemporizador();
+      document.getElementById("msg-final").innerHTML = "Felicidades !!";
+      document.getElementById("msg-final").className += "zoom-in";
+      document.getElementById("palabra").className += " encuadre";
+      for (let i = 0; i < buttons.length; i++) {
+        buttons[i].disabled = true;
+      }
+      document.getElementById("reinicio").innerHTML = "Empezar de nuevo";
+      btnInicio.onclick = function () { location.reload() };
+    } else if (cont == 0) {
+      pausarTemporizador();
+      document.getElementById("msg-final").innerHTML = "Game Over";
+      document.getElementById("msg-final").className += "zoom-in";
+      for (let i = 0; i < buttons.length; i++) {
+        buttons[i].disabled = true;
+      }
+      document.getElementById("reinicio").innerHTML = "Empezar de nuevo";
+      btnInicio.onclick = function () { location.reload() };
     }
-    document.getElementById("reset").innerHTML = "Empezar";
-    btnInicio.onclick = function () { location.reload() };
-  } else if (cont == 0) {
-    document.getElementById("msg-final").innerHTML = "Game Over";
-    document.getElementById("msg-final").className += "zoom-in";
-    for (let i = 0; i < buttons.length; i++) {
-      buttons[i].disabled = true;
-    }
-    document.getElementById("reset").innerHTML = "Empezar";
-    btnInicio.onclick = function () { location.reload() };
-  }
 }
 
 // Restablecer juego
 function inicio() {
-  generaPalabra();
-  pintarGuiones(palabra.length);
-  generaABC("a", "z");
+    iniciarTemporizador();
+    tiempoRestante=120; 
+    document.getElementById('reanudar').style.display = "none";
+    document.getElementById('stop').style.display = "block";
+    generaPalabra();
+    pintarGuiones(palabra.length);
+    GenerarLetras();
+    indicePista = 0;
+    
+    cont = 6;
+    document.getElementById("intentos").innerHTML = cont;   
 
-  cont = 6;
-  document.getElementById("intentos").innerHTML = cont;
+    document.getElementById("msg-final").innerHTML = "";
+    document.getElementById("msg-final").className = "";
+    document.getElementById("acierto").innerHTML = "";
+    document.getElementById("acierto").className = "";
+    document.getElementById("hueco-pista").innerHTML = "";
+    document.getElementById("palabra").className = "";
 
-  // Resetear mensajes y clases
-  document.getElementById("msg-final").innerHTML = "";
-  document.getElementById("msg-final").className = "";
-  document.getElementById("acierto").innerHTML = "";
-  document.getElementById("acierto").className = "";
-  document.getElementById("hueco-pista").innerHTML = "";
-  document.getElementById("palabra").className = "";
-
-  // Resetear imágenes del ahorcado
-  for (let i = 0; i <= 5; i++) {
-    document.getElementById("image" + i).className = "";
-  }
+    for (let i = 0; i <= 5; i++) {
+      document.getElementById("image" + i).className = "";
+    }
 }
+
+
+document.addEventListener("keydown", function (event) {
+    let letra = event.key.toUpperCase();
+
+    if (/^[A-ZÑ]$/.test(letra)) {
+        if (document.getElementById(letra) && !document.getElementById(letra).disabled) {
+            intento(letra);
+        }
+    }
+});
+
 
 window.onload = inicio;
