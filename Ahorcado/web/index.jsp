@@ -9,17 +9,20 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-        <link rel="stylesheet" href="css/estilo-ahoracado.css"/>
+        <title>Juego de Ahorcado</title>
+        <link rel="stylesheet" href="css/estilo-ahorcado.css"/>
     </head>
     <body>
         <div class="contenedor-principal">
             <h1 class="titulo">Juego del ahorcado</h1>
+            <button onclick="pausarTemporizador()" id="stop">Pausar</button>
+            <button onclick="reanudarTemporizador()" id="reanudar">Reanudar</button>
+                <p id="tempo"></p>
             <h1 id="msg-final"></h1>
-            <h3 id="acierto"></h3>
             
-            <div class="fila-flexible sin-ajuste">
-              <h2 class="palabra" id="palabra"></h2>
+            
+            <div class="fila-flexible-ahorcado sin-ajuste">
+                
               <picture>
                 <img src="img/ahorcado_6.png" alt="" id="image6">
                 <img src="img/ahorcado_5.png" alt="" id="image5">
@@ -29,15 +32,23 @@
                 <img src="img/ahorcado_1.png" alt="" id="image1">
                 <img src="img/ahorcado_0.png" alt="" id="image0">
               </picture>
+                
+                <h2 class="palabra" id="palabra"></h2>
+                
+                <h3 id="acierto"></h3>
+                <button onclick="inicio()" id="reinicio">Elegir otra palabra</button>
             </div>
             
-            <div class="fila-flexible" id="turnos">
+            <div class="fila-flexible-datos" id="turnos">
               <div class="columna">
+
                 <h3>Intentos restantes: <span id="intentos">6</span></h3>
               </div>
               <div class="columna">
-                <button onclick="inicio()" id="reinicio">Elegir otra palabra</button>
-                <button onclick="pista()" id="pista">Dame una pista!</button>
+                
+                <button onclick="pista()" id="pista">Pistas!</button>
+                
+                
                 <span id="hueco-pista"></span>
               </div>
             </div>
@@ -47,7 +58,6 @@
                 <div class="fila-flexible" id="abcdario">
                 </div>
               </div>
-              <div class="columna"></div>
             </div>
 
           </div>
