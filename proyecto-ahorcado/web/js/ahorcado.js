@@ -1,10 +1,3 @@
-let palabras = [
-  ["Elefante", ["Mamífero terrestre", "Posee trompa larga", "Vive en manadas"]],
-  ["Horizonte", ["Límite visual", "Divide cielo y tierra", "Depende de la perspectiva"]],
-  ["Volcanes", ["Expulsan lava", "Generan gases", "Pueden ser activos o inactivos"]],
-  ["Software", ["Conjunto de programas", "Intangible", "Controla el hardware"]],
-  ["Baterias", ["Almacenan energía", "Suministran corriente", "Pueden recargarse"]]
-];
 
 let palabra = "";
 let random;
@@ -21,7 +14,6 @@ const btnInicio = document.getElementById("reinicio");
 function generaPalabra() {
   random = Math.floor(Math.random() * palabras.length);
   palabra = palabras[random][0].toUpperCase();
-  console.log(palabra);
 }
 
 function iniciarTemporizador() {
@@ -91,9 +83,11 @@ function GenerarLetras() {
 // Chequear intento
 function intento(letra) {
     document.getElementById(letra).disabled = true;
-    if (palabra.indexOf(letra) != -1) {
+    if (quitarTildes(palabra).indexOf(quitarTildes(letra)) != -1) {
       for (let i = 0; i < palabra.length; i++) {
-        if (palabra[i] == letra) oculta[i] = letra;
+        if (quitarTildes(palabra[i]) == quitarTildes(letra)) {
+            oculta[i] = palabra[i];
+        }
       }
       hueco.innerHTML = oculta.join(" ");
       document.getElementById("acierto").innerHTML = "Bien!";
@@ -133,11 +127,15 @@ function compruebaFin() {
         buttons[i].disabled = true;
       }
       document.getElementById("reinicio").innerHTML = "Empezar de nuevo";
-      btnInicio.onclick = function () { location.reload() };
+        btnInicio.onclick = function () {
+            inicio();
+        };
+
     } else if (cont == 0) {
       pausarTemporizador();
       document.getElementById("msg-final").innerHTML = "Game Over";
       document.getElementById("msg-final").className += "zoom-in";
+      hueco.innerHTML="La palabra es: "+palabra;
       for (let i = 0; i < buttons.length; i++) {
         buttons[i].disabled = true;
       }
@@ -170,6 +168,9 @@ function inicio() {
     for (let i = 0; i <= 5; i++) {
       document.getElementById("image" + i).className = "";
     }
+}
+function quitarTildes(str) {
+  return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 }
 
 
