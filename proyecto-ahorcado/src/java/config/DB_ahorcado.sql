@@ -11,14 +11,14 @@ create table palabras (
 );
 
 insert into palabras (nombre, pista1, pista2, pista3) values
-('Elefante', 'Mamífero terrestre', 'Posee trompa larga', 'Vive en manadas'),
-('Horizonte', 'Límite visual', 'Divide cielo y tierra', 'Depende de la perspectiva'),
-('Volcán', 'Expulsa lava', 'Genera gases', 'Puede ser activo o inactivo'),
-('Software', 'Conjunto de programas', 'Intangible', 'Controla el hardware'),
-('Baterías', 'Almacenan energía', 'Suministran corriente', 'Pueden recargarse');
+('Estrella', 'Brilla en el cielo', 'Forma constelaciones', 'Se ve de noche'),
+('Computar', 'Se usa para procesar datos', 'Puede ser portátil', 'Tiene memoria y CPU'),
+('Montañas', 'Elevaciones de tierra', 'Forman cadenas', 'Pueden tener nieve'),
+('Bicicleta', 'Tiene dos ruedas', 'Se usa para transportarse', 'Requiere pedales'),
+('Cocodrilo', 'Reptil grande', 'Vive en ríos y lagos', 'Tiene dientes afilados');
 
 delimiter $$
-create procedure obtener_palabras()
+create procedure sp_listarPalabras()
 begin
     select 
         codigoPalabra,
@@ -29,3 +29,5 @@ begin
     from palabras;
 end $$
 delimiter ;
+
+call sp_listarPalabras();
