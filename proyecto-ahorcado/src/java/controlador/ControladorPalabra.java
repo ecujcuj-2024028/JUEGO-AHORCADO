@@ -11,7 +11,7 @@ public class ControladorPalabra {
     public List<Palabra> listarPalabras() {
         System.out.println("Se entro a listar palabras");
         List<Palabra> lista = new ArrayList<>();
-        String sql = "select * from palabras";
+        String sql = "call sp_listarPalabras();";
         
         
         try {

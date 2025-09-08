@@ -36,9 +36,6 @@ public class Validar extends HttpServlet {
             response.sendRedirect("Controlador?menu=principal");
         }
     }
-
-    
-
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
