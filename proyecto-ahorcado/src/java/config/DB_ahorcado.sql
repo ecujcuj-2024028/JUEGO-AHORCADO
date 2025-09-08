@@ -17,4 +17,15 @@ insert into palabras (nombre, pista1, pista2, pista3) values
 ('Software', 'Conjunto de programas', 'Intangible', 'Controla el hardware'),
 ('Baterías', 'Almacenan energía', 'Suministran corriente', 'Pueden recargarse');
 
-select * from palabras;
+delimiter $$
+create procedure obtener_palabras()
+begin
+    select 
+        codigoPalabra,
+        nombre,
+        pista1,
+        pista2,
+        pista3
+    from palabras;
+end $$
+delimiter ;

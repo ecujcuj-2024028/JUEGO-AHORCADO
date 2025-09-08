@@ -75,12 +75,9 @@
             </div>
 
           </div>
-            <%
-                List<Palabra> lista = (List<Palabra>) request.getAttribute("palabrasDB");
-            %>
+            <%List<Palabra> lista = (List<Palabra>) request.getAttribute("palabrasDB");%>
 
             <script>
-                
                 const palabras = [
                 <% if (lista != null && !lista.isEmpty()) {
                        for (int i = 0; i < lista.size(); i++) {
@@ -90,8 +87,7 @@
                    } else { %>
                     ["PRUEBA", ["Pista uno", "Pista dos", "Pista tres"]]
                 <% } %>
-                ];  
-                        console.log("Palabras cargadas:", palabras);
+                ];
             </script>
 
         <script src="js/ahorcado.js"></script>
