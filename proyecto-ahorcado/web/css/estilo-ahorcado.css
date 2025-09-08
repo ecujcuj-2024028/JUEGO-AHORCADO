@@ -1,215 +1,220 @@
 * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #2c3e50;
-  color: #333;
-  line-height: 1.5;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #2c3e50;
+    color: #333;
+    line-height: 1.5;
 }
+
 header nav.navbar {
-  background-color: #2c3e50 !important;
-  color: #fff;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    background-color: #2c3e50 !important;
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
 }
 
 header .btn {
-  background-color: #e74c3c;
-  color: #fff;
-  border-radius: 6px;
-  padding: 6px 14px;
-  font-size: 0.9rem;
-  transition: background-color 0.3s ease;
+    background-color: #e74c3c;
+    color: #fff;
+    border-radius: 6px;
+    padding: 6px 14px;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease;
 }
 
 header .btn:hover {
-  background-color: #c0392b;
+    background-color: #c0392b;
 }
 
 .contenedor-principal { 
-  max-width: 800px;
-  margin: 40px auto;
-  padding: 25px;
-  background-color: #fefefe;
-  border-radius: 12px;
-  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 25px;
+    background-color: #fefefe;
+    border-radius: 12px;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 h1.titulo {
-  margin-bottom: 25px;
-  text-align: center;
-  font-size: 2.2rem;
-  color: #1a252f;
-  font-weight: 600;
+    margin-bottom: 25px;
+    text-align: center;
+    font-size: 2.2rem;
+    color: #1a252f;
+    font-weight: 600;
 }
 
 h1#msg-final {
-  text-align: center;
-  color: #e74c3c;
-  transition: transform 0.4s ease;
-  transform: scale(0);
-  min-height: 50px;
-  margin-bottom: 15px;
-  font-weight: bold;
+    text-align: center;
+    color: #e74c3c;
+    transition: transform 0.4s ease;
+    transform: scale(0);
+    min-height: 50px;
+    margin-bottom: 15px;
+    font-weight: bold;
 }
 
 .zoom-in {
-  transform: scale(1) !important;
+    transform: scale(1) !important;
 }
 
 #acierto {
-  text-align: center;
-  min-height: 24px;
-  transform: scale(0);
-  width: 100%;
-  font-weight: bold;
-  color: #27ae60;
+    text-align: center;
+    min-height: 24px;
+    transform: scale(0);
+    width: 100%;
+    font-weight: bold;
+    color: #27ae60;
 }
 
 .acierto {
-  animation: zoomInOut 1s ease;
+    animation: zoomInOut 1s ease;
 }
 
 @keyframes zoomInOut {
-  0% { transform: scale(0); }
-  50% { transform: scale(1.1); }
-  70% { transform: scale(1); }
-  100% { transform: scale(0); }
+    0% { transform: scale(0); }
+    50% { transform: scale(1.1); }
+    70% { transform: scale(1); }
+    100% { transform: scale(0); }
 }
 
 h2.palabra {
-  margin: 25px auto;
-  text-align: center;
-  color: #2980b9;
-  text-transform: uppercase;
-  letter-spacing: 8px;
-  font-size: 1.6rem;
-  font-weight: bold;
+    margin: 25px auto;
+    text-align: center;
+    color: #2980b9;
+    text-transform: uppercase;
+    letter-spacing: 8px;
+    font-size: 1.6rem;
+    font-weight: bold;
 }
 
 .fila-flexible,
 .fila-flexible-datos,
 .fila-flexible-ahorcado {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  width: 100%;
-  margin: 15px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+    margin: 15px auto;
 }
 
 .fila-flexible-datos {
-  justify-content: space-between;
-  gap: 20px;
+    justify-content: space-between;
+    gap: 20px;
 }
 
 .columna {
-  text-align: center;
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+    text-align: center;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 #turnos h3 {
-  margin: auto;
-  font-weight: 500;
-  font-size: 1.1rem;
+    margin: auto;
+    font-weight: 500;
+    font-size: 1.1rem;
 }
 
 h3 span {
-  color: #e67e22;
-  font-weight: bold;
+    color: #e67e22;
+    font-weight: bold;
 }
 
 button {
-  margin: 6px;
-  padding: 10px 18px;
-  font-size: 0.95rem;
-  background-color: #3498db;
-  border: none;
-  border-radius: 6px;
-  color: white;
-  cursor: pointer;
-  transition: transform 0.2s ease, background-color 0.3s ease;
+    margin: 6px;
+    padding: 10px 18px;
+    font-size: 0.95rem;
+    background-color: #3498db;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.3s ease;
 }
 
 button:hover {
-  background-color: #2980b9;
-  transform: translateY(-2px);
+    background-color: #2980b9;
+    transform: translateY(-2px);
 }
 
 button:active {
-  transform: translateY(0);
+    transform: translateY(0);
 }
 
 .letra:disabled {
-  color: #aaa;
-  background-color: #f2f2f2;
-  cursor: not-allowed;
+    color: #aaa;
+    background-color: #f2f2f2;
+    cursor: not-allowed;
 }
 
 picture {
-  position: relative;
-  width: 230px;
-  height: 230px;
-  margin: 0 auto 20px;
-  display: flex;
-  justify-content: center;
+    position: relative;
+    width: 230px;
+    height: 230px;
+    margin: 0 auto 20px;
+    display: flex;
+    justify-content: center;
 }
 
 picture img {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  height: 100%;
-  width: auto;
-  opacity: 0;
-  transition: opacity 0.4s ease;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 100%;
+    width: auto;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+#image6 {
+    opacity: 1 !important;
 }
 
 .fade-in {
-  opacity: 1 !important;
+    opacity: 1 !important;
 }
 
 #abcdario {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 6px;
-  width: 100%;
-  max-width: 500px;
-  margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
 }
 
 #abcdario button {
-  width: 40px;
-  height: 40px;
-  font-weight: bold;
-  font-size: 1rem;
+    width: 40px;
+    height: 40px;
+    font-weight: bold;
+    font-size: 1rem;
 }
 
 #tempo {
-  margin-top: 12px;
-  font-weight: bold;
-  color: #2c3e50;
+    margin-top: 12px;
+    font-weight: bold;
+    color: #2c3e50;
 }
 
 #hueco-pista {
-  margin-top: 12px;
-  text-align: center;
-  font-style: italic;
-  color: #7f8c8d;
+    margin-top: 12px;
+    text-align: center;
+    font-style: italic;
+    color: #7f8c8d;
 }
 
 #reanudar {
-  display: none;
+    display: none;
 }

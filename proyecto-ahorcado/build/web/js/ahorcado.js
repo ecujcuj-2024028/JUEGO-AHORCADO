@@ -147,7 +147,7 @@ function compruebaFin() {
 // Restablecer juego
 function inicio() {
     iniciarTemporizador();
-    tiempoRestante=120; 
+    tiempoRestante = 120; 
     document.getElementById('reanudar').style.display = "none";
     document.getElementById('stop').style.display = "block";
     generaPalabra();
@@ -165,10 +165,13 @@ function inicio() {
     document.getElementById("hueco-pista").innerHTML = "";
     document.getElementById("palabra").className = "";
 
-    for (let i = 0; i <= 5; i++) {
-      document.getElementById("image" + i).className = "";
+    for (let i = 0; i <= 6; i++) {
+        document.getElementById("image" + i).className = "";
     }
+
+    document.getElementById("image6").classList.add("fade-in");
 }
+
 function quitarTildes(str) {
   return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 }
