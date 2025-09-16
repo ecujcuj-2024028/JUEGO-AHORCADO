@@ -37,7 +37,7 @@ public class Conexion {
     public Connection getConexion() {
         try {
             if (conexion == null || conexion.isClosed()) {
-                String url = "jdbc:mysql://localhost:3306/DBVeterinaria2025?useSSL=false&allowPublicKeyRetrieval=true";
+                String url = "jdbc:mysql://localhost:3306/DB_ahorcado?useSSL=false&allowPublicKeyRetrieval=true";
                 String user = "quintom";
                 String password = "admin";
                 conexion = DriverManager.getConnection(url, user, password);
