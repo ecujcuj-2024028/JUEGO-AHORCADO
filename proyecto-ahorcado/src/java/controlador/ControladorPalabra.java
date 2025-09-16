@@ -9,10 +9,9 @@ import modelo.Palabra;
 public class ControladorPalabra {
 
     public List<Palabra> listarPalabras() {
-        System.out.println("Se entro a listar palabras");
+        System.out.println("Se entró a listar palabras");
         List<Palabra> lista = new ArrayList<>();
-        String sql = "call sp_listarPalabras();";
-        
+        String sql = "call sp_listar_palabras();";
         
         try {
             Conexion conexionInstance = Conexion.getInstancia();
@@ -24,11 +23,11 @@ public class ControladorPalabra {
                 
                 while (rs.next()) {
                     Palabra palabra = new Palabra(
-                            rs.getInt("codigoPalabra"),
+                            rs.getInt("codigo_palabra"),
                             rs.getString("nombre"),
-                            rs.getString("pista1"),
-                            rs.getString("pista2"),
-                            rs.getString("pista3")
+                            rs.getString("pista_1"),
+                            rs.getString("pista_2"),
+                            rs.getString("pista_3")
                     );
                     lista.add(palabra);
                 }
