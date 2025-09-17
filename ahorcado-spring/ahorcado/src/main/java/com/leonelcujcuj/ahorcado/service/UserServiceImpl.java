@@ -45,6 +45,9 @@ public class UserServiceImpl implements UserService{
         if (userRepository.findByNombreUsuario(user.getNombreUsuario()).isPresent()){
             throw new IllegalArgumentException("El nombre ya esta registrado");
         }
+        if (userRepository.findById(id).isEmpty()){
+            throw new IllegalArgumentException("El usuario no existe");
+        }
         User existente = userRepository.findById(id).orElse(null);
             if (existente != null){
                 existente.setNombreUsuario(user.getNombreUsuario());
@@ -58,5 +61,7 @@ public class UserServiceImpl implements UserService{
     @Override
     public void deleteUser(Integer id) {
         userRepository.deleteById(id);
+        if (userRepository.findById(id).isEmpty())
+            throw new IllegalArgumentException("El usuario no existe");
     }
 }
