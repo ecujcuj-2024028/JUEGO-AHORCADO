@@ -2,7 +2,6 @@
 package controlador;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -27,10 +26,10 @@ public class Controlador extends HttpServlet {
             request.setAttribute("palabrasDB", lista);
             System.out.println(lista);
             request.getRequestDispatcher("/ahorcado.jsp").forward(request, response);
+            System.out.println(lista);
         } else if ("ahorcado".equals(menu)) {
             List<Palabra> lista = pala.listarPalabras();
             request.setAttribute("palabrasDB", lista);
-            System.out.println(lista);
             request.getRequestDispatcher("/ahorcado.jsp").forward(request, response);
             return;
         } else if("log".equals(menu)){

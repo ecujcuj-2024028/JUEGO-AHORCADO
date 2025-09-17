@@ -22,16 +22,19 @@ public class Palabra {
     @Column(name= "pista_3")
     private String pista3;
 
+    @Column(name = "imagen")
+    private String imagen;
 
-    public Palabra() {}
-
-    public Palabra(Integer codigoPalabra, String nombre, String pista1, String pista2, String pista3) {
+    public Palabra(Integer codigoPalabra, String nombre, String pista1, String pista2, String pista3, String imagen) {
         this.codigoPalabra = codigoPalabra;
         this.nombre = nombre;
         this.pista1 = pista1;
         this.pista2 = pista2;
         this.pista3 = pista3;
+        this.imagen = imagen;
     }
+
+    public Palabra() {}
 
     public Integer getCodigoPalabra() {
         return codigoPalabra;
@@ -71,5 +74,13 @@ public class Palabra {
 
     public void setPista3(String pista3) {
         this.pista3 = pista3;
+    }
+
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
     }
 }

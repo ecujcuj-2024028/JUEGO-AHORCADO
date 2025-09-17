@@ -17,11 +17,20 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public List<User> getAllUsers() {
+        if (userRepository.findAll().isEmpty()){
+            throw new IllegalArgumentException("No hay registros para mostrar");
+        }
         return userRepository.findAll();
     }
 
     @Override
     public User getUserByid(Integer id) {
+        if (id == null || id <= 0) {
+            throw new IllegalArgumentException("El id debe ser mayor a 0");
+        }
+        if (userRepository.findById(id).isEmpty()){
+            throw new IllegalArgumentException("No existe usuario con el id: "+ id);
+        }
         return userRepository.findById(id).orElse(null);
     }
 
@@ -39,6 +48,9 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public User updateUser(Integer id, User user) {
+        if (id == null || id <= 0) {
+            throw new IllegalArgumentException("El id debe ser mayor a 0");
+        }
         if (userRepository.findByCorreo(user.getCorreo()).isPresent()){
             throw new IllegalArgumentException("El correo ya esta registrado");
         }
@@ -60,8 +72,10 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public void deleteUser(Integer id) {
-        userRepository.deleteById(id);
-        if (userRepository.findById(id).isEmpty())
+        if (userRepository.findById(id).isEmpty()) {
             throw new IllegalArgumentException("El usuario no existe");
+        }
+        userRepository.deleteById(id);
+
     }
 }
