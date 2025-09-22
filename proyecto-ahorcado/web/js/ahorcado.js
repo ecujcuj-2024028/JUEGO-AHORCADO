@@ -10,6 +10,8 @@ const hueco = document.getElementById("palabra");
 const buttons = document.getElementsByClassName('letra');
 const btnInicio = document.getElementById("reinicio");
 
+let imagen = document.getElementById("imagenPalabra");
+
 // Escoger palabra al azar
 function generaPalabra() {
   random = Math.floor(Math.random() * palabras.length);
@@ -123,6 +125,7 @@ function compruebaFin() {
       document.getElementById("msg-final").innerHTML = "Felicidades !!";
       document.getElementById("msg-final").className += "zoom-in";
       document.getElementById("palabra").className += " encuadre";
+      
       for (let i = 0; i < buttons.length; i++) {
         buttons[i].disabled = true;
       }
@@ -130,7 +133,7 @@ function compruebaFin() {
         btnInicio.onclick = function () {
             inicio();
         };
-
+        imagen.style.opacity = "1";
     } else if (cont == 0) {
       pausarTemporizador();
       document.getElementById("msg-final").innerHTML = "Game Over";
@@ -141,11 +144,14 @@ function compruebaFin() {
       }
       document.getElementById("reinicio").innerHTML = "Empezar de nuevo";
       btnInicio.onclick = function () { location.reload() };
+      imagen.style.opacity = "1";
+
     }
 }
 
 // Restablecer juego
 function inicio() {
+    imagen.style.opacity = "0";
     iniciarTemporizador();
     tiempoRestante = 120; 
     document.getElementById('reanudar').style.display = "none";
@@ -155,8 +161,11 @@ function inicio() {
     GenerarLetras();
     indicePista = 0;
     
+
     cont = 6;
     document.getElementById("intentos").innerHTML = cont;   
+    
+    imagen.src = palabras[random][2];
 
     document.getElementById("msg-final").innerHTML = "";
     document.getElementById("msg-final").className = "";
@@ -170,6 +179,7 @@ function inicio() {
     }
 
     document.getElementById("image6").classList.add("fade-in");
+    
 }
 
 function quitarTildes(str) {

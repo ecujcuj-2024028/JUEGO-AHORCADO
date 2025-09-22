@@ -6,15 +6,17 @@ public class Palabra {
     private String pista1;
     private String pista2;
     private String pista3;
+    private String imagen;
 
     public Palabra() {}
 
-    public Palabra(int id, String nombre, String pista1, String pista2, String pista3) {
+    public Palabra(int id, String nombre, String pista1, String pista2, String pista3, String imagen) {
         this.id = id;
         this.nombre = nombre;
         this.pista1 = pista1;
         this.pista2 = pista2;
         this.pista3 = pista3;
+        this.imagen = imagen;
     }
 
     public int getId() { return id; }
@@ -31,4 +33,14 @@ public class Palabra {
 
     public String getPista3() { return pista3; }
     public void setPista3(String pista3) { this.pista3 = pista3; }
+
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
+    
+    
 }

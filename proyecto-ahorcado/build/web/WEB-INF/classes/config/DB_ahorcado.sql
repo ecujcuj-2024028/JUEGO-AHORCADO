@@ -28,16 +28,7 @@ create table usuarios (
 );
 
 insert into usuarios (nombre_usuario, correo, fecha_registro, password) values
-('carlos23', 'carlos23@gmail.com', '2025-01-10 14:32:00', '1234'),
-('maria88', 'maria88@yahoo.com', '2025-02-05 09:15:00', 'abcd'),
-('juanito7', 'juanito7@hotmail.com', '2025-02-18 20:45:00', 'juan123'),
-('lauraX', 'laurax@gmail.com', '2025-03-01 11:22:00', 'laura321'),
-('pedro99', 'pedro99@gmail.com', '2025-03-15 16:40:00', 'pedro999'),
-('sofia12', 'sofia12@hotmail.com', '2025-04-02 08:10:00', 'sofia12'),
-('andres45', 'andres45@gmail.com', '2025-04-20 21:05:00', 'andres45'),
-('dianaQ', 'diana.q@yahoo.com', '2025-05-10 13:55:00', 'dianaQpass'),
-('luisito', 'luisito@gmail.com', '2025-06-03 07:50:00', 'luisito123'),
-('valentina', 'valentina@hotmail.com', '2025-06-25 19:35:00', 'valentina1');
+('leo', 'leo@gmail.com', '2025-01-10 14:32:00', '123');
 
 
 
@@ -56,3 +47,18 @@ end $$
 delimiter ;
 
 call sp_listar_palabras();
+
+delimiter $$
+create procedure sp_listar_usuarios()
+begin
+    select 
+        codigo_usuario,
+        nombre_usuario,
+        correo,
+        fecha_registro,
+        password
+    from usuarios;
+end $$
+delimiter ;
+
+call sp_listar_usuarios();

@@ -176,7 +176,105 @@ picture img {
     opacity: 0;
     transition: opacity 0.4s ease;
 }
+/* Contenedor del ahorcado - ajuste de z-index */
+.fila-flexible-ahorcado picture {
+    position: relative;
+    width: 230px;
+    height: 230px;
+    margin: 0 auto 20px;
+    display: flex;
+    justify-content: center;
+    z-index: 1; /* Nivel bajo para que no tape otros elementos */
+}
 
+/* Imágenes del ahorcado */
+.fila-flexible-ahorcado picture img {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 100%;
+    width: auto;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 1;
+}
+
+/* Imagen de la palabra - mayor z-index para que esté encima */
+#imagenPalabra {
+    display: block;
+    max-width: 200px;
+    max-height: 150px;
+    width: auto;
+    height: auto;
+    margin: 15px auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    object-fit: contain;
+    position: relative;
+    z-index: 10; /* Mayor z-index para estar encima */
+}
+
+/* Contenedor de la imagen de la palabra */
+#acierto + picture {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 150px;
+    width: 100%;
+    position: relative;
+    z-index: 10;
+    margin: 20px 0;
+}
+
+/* Ajuste para el contenedor principal del juego */
+.fila-flexible-ahorcado.sin-ajuste {
+    flex-direction: column;
+    gap: 20px;
+    position: relative;
+    z-index: 5;
+}
+
+/* Elementos de texto con mayor z-index */
+h2.palabra {
+    position: relative;
+    z-index: 15;
+    margin: 25px auto;
+    text-align: center;
+    color: #2980b9;
+    text-transform: uppercase;
+    letter-spacing: 8px;
+    font-size: 1.6rem;
+    font-weight: bold;
+}
+
+#acierto {
+    position: relative;
+    z-index: 15;
+    text-align: center;
+    min-height: 24px;
+    transform: scale(0);
+    width: 100%;
+    font-weight: bold;
+    color: #27ae60;
+}
+
+/* Botones con z-index apropiado */
+#reinicio {
+    position: relative;
+    z-index: 15;
+    margin-top: 20px;
+}
+
+#turnos {
+    position: relative;
+    z-index: 15;
+}
+
+#abcdario {
+    position: relative;
+    z-index: 15;
+}
 #image6 {
     opacity: 1 !important;
 }

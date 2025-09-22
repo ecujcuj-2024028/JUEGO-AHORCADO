@@ -48,8 +48,9 @@
               </picture>
                 
                 <h2 class="palabra" id="palabra"></h2>
-                
                 <h3 id="acierto"></h3>
+                   
+                
                 <button onclick="inicio()" id="reinicio">Elegir otra palabra</button>
             </div>
             
@@ -73,7 +74,10 @@
                 </div>
               </div>
             </div>
-
+            
+            <picture>
+                <img src="" id="imagenPalabra"/>
+            </picture>
           </div>
             <%List<Palabra> lista = (List<Palabra>) request.getAttribute("palabrasDB");%>
 
@@ -82,12 +86,14 @@
                 <% if (lista != null && !lista.isEmpty()) {
                        for (int i = 0; i < lista.size(); i++) {
                            Palabra p = lista.get(i); %>
-                    ["<%= p.getNombre() %>", ["<%= p.getPista1() %>", "<%= p.getPista2() %>", "<%= p.getPista3() %>"]]<%= (i < lista.size() - 1) ? "," : "" %>
+                    ["<%= p.getNombre() %>", ["<%= p.getPista1() %>", "<%= p.getPista2() %>", "<%= p.getPista3() %>"], "img/<%= p.getImagen() %>"]<%= (i < lista.size() - 1) ? "," : "" %>
                 <%     }
                    } else { %>
-                    ["PRUEBA", ["Pista uno", "Pista dos", "Pista tres"]]
+                    ["PRUEBA", ["Pista uno", "Pista dos", "Pista tres"], "img/prueba.png"]
                 <% } %>
                 ];
+
+
             </script>
 
         <script src="js/ahorcado.js"></script>

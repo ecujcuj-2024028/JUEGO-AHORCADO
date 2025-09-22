@@ -27,7 +27,8 @@ public class ControladorPalabra {
                             rs.getString("nombre"),
                             rs.getString("pista_1"),
                             rs.getString("pista_2"),
-                            rs.getString("pista_3")
+                            rs.getString("pista_3"),
+                            rs.getString("imagen")
                     );
                     lista.add(palabra);
                 }
