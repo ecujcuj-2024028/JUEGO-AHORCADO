@@ -176,6 +176,21 @@ picture img {
     opacity: 0;
     transition: opacity 0.4s ease;
 }
+
+#imgPalabra {
+    display: none;
+    margin: 15px auto;
+    max-width: 200px;
+    max-height: 150px;
+    width: auto;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    object-fit: contain;
+    text-align: center;
+}
+
+
 /* Contenedor del ahorcado - ajuste de z-index */
 .fila-flexible-ahorcado picture {
     position: relative;

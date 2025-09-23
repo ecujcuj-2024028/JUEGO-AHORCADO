@@ -11,6 +11,7 @@ const buttons = document.getElementsByClassName('letra');
 const btnInicio = document.getElementById("reinicio");
 
 let imagen = document.getElementById("imagenPalabra");
+let imgPalabra = document.getElementById("imgPalabra");
 
 // Escoger palabra al azar
 function generaPalabra() {
@@ -134,6 +135,8 @@ function compruebaFin() {
             inicio();
         };
         imagen.style.opacity = "1";
+        imgPalabra.style.display= "block";;
+        
     } else if (cont == 0) {
       pausarTemporizador();
       document.getElementById("msg-final").innerHTML = "Game Over";
@@ -145,12 +148,13 @@ function compruebaFin() {
       document.getElementById("reinicio").innerHTML = "Empezar de nuevo";
       btnInicio.onclick = function () { location.reload() };
       imagen.style.opacity = "1";
-
+      imgPalabra.style.display= "block";;
     }
 }
 
 // Restablecer juego
 function inicio() {
+    imgPalabra.style.display = "none";
     imagen.style.opacity = "0";
     iniciarTemporizador();
     tiempoRestante = 120; 
@@ -179,7 +183,7 @@ function inicio() {
     }
 
     document.getElementById("image6").classList.add("fade-in");
-    
+     
 }
 
 function quitarTildes(str) {
