@@ -8,15 +8,16 @@ create table palabras (
     pista_1 varchar(255) not null,
     pista_2 varchar(255) not null,
     pista_3 varchar(255) not null,
+    imagen varchar(255) not null,
     primary key pk_codigo_palabra (codigo_palabra)
 );
 
-insert into palabras (nombre, pista_1, pista_2, pista_3) values
-('estrella', 'brilla en el cielo', 'forma constelaciones', 'se ve de noche'),
-('computar', 'se usa para procesar datos', 'puede ser portátil', 'tiene memoria y cpu'),
-('montañas', 'elevaciones de tierra', 'forman cadenas', 'pueden tener nieve'),
-('bicicleta', 'tiene dos ruedas', 'se usa para transportarse', 'requiere pedales'),
-('cocodrilo', 'reptil grande', 'vive en ríos y lagos', 'tiene dientes afilados');
+insert into palabras (nombre, pista_1, pista_2, pista_3, imagen) values
+('estrella', 'brilla en el cielo', 'forma constelaciones', 'se ve de noche', 'estrella.jpg'),
+('computadora', 'se usa para procesar datos', 'puede ser portátil', 'tiene memoria y cpu', 'computadora.jpg'),
+('montañas', 'elevaciones de tierra', 'forman cadenas', 'pueden tener nieve', 'montaña.jpg'),
+('bicicleta', 'tiene dos ruedas', 'se usa para transportarse', 'requiere pedales', 'bicicleta.jpg'),
+('cocodrilo', 'reptil grande', 'vive en ríos y lagos', 'tiene dientes afilados', 'cocodrilo');
 
 create table usuarios (
     codigo_usuario int auto_increment,
@@ -30,9 +31,6 @@ create table usuarios (
 insert into usuarios (nombre_usuario, correo, fecha_registro, password) values
 ('leo', 'leo@gmail.com', '2025-01-10 14:32:00', '123');
 
-
-
-
 delimiter $$
 create procedure sp_listar_palabras()
 begin
@@ -41,7 +39,8 @@ begin
         nombre,
         pista_1,
         pista_2,
-        pista_3
+        pista_3,
+        imagen
     from palabras;
 end $$
 delimiter ;
