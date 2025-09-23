@@ -17,7 +17,7 @@ insert into palabras (nombre, pista_1, pista_2, pista_3, imagen) values
 ('computadora', 'se usa para procesar datos', 'puede ser portátil', 'tiene memoria y cpu', 'computadora.jpg'),
 ('montañas', 'elevaciones de tierra', 'forman cadenas', 'pueden tener nieve', 'montaña.jpg'),
 ('bicicleta', 'tiene dos ruedas', 'se usa para transportarse', 'requiere pedales', 'bicicleta.jpg'),
-('cocodrilo', 'reptil grande', 'vive en ríos y lagos', 'tiene dientes afilados', 'cocodrilo');
+('cocodrilo', 'reptil grande', 'vive en ríos y lagos', 'tiene dientes afilados', 'cocodrilo.jpg');
 
 create table usuarios (
     codigo_usuario int auto_increment,
