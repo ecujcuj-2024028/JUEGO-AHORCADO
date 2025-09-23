@@ -47,6 +47,9 @@ public class PalabraServiceImpl implements PalabraService{
                 palabra.getPista3() == null || palabra.getPista3().isBlank()) {
             throw new IllegalArgumentException("Las pistas son obligatorias");
         }
+        if (palabra.getImagen()== null || palabra.getImagen().isBlank()){
+                palabra.setImagen("default.png");
+        }
 
         return palabraRepository.save(palabra);
     }

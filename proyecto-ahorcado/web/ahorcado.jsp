@@ -52,6 +52,9 @@
                    
                 
                 <button onclick="inicio()" id="reinicio">Elegir otra palabra</button>
+                <picture>
+                <img src="" id="imagenPalabra"/>
+                </picture>
             </div>
             
             <div class="fila-flexible-datos" id="turnos">
@@ -75,9 +78,7 @@
               </div>
             </div>
             
-            <picture>
-                <img src="" id="imagenPalabra"/>
-            </picture>
+            
           </div>
             <%List<Palabra> lista = (List<Palabra>) request.getAttribute("palabrasDB");%>
 
