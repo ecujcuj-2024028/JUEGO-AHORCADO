@@ -66,8 +66,9 @@ public class UserServiceImpl implements UserService{
                 existente.setCorreo(user.getCorreo());
                 existente.setFechaRegistro(user.getFechaRegistro());
                 existente.setPassword(user.getPassword());
+                return userRepository.save(existente);
             }
-        return null ;
+        return null;
     }
 
     @Override
