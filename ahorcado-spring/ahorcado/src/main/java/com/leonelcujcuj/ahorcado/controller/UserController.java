@@ -6,6 +6,7 @@ import com.leonelcujcuj.ahorcado.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import tools.jackson.databind.exc.InvalidFormatException;
 
 import java.util.HashMap;
 import java.util.List;
@@ -46,10 +47,14 @@ public class UserController {
         userService.deleteUser(id);
     }
 
-    @ExceptionHandler(IllegalArgumentException.class)
-    public ResponseEntity<Map<String, String>> handleDuplicate(IllegalArgumentException ex) {
+    @ExceptionHandler({IllegalArgumentException.class, InvalidFormatException.class})
+    public ResponseEntity<Map<String, String>> handleExceptions(Exception ex) {
         Map<String, String> error = new HashMap<>();
-        error.put("error", ex.getMessage());
-        return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
+        if (ex instanceof InvalidFormatException) {
+            error.put("error", "La fecha de registro no tiene un formato válido");
+        } else {
+            error.put("error", ex.getMessage());
+        }
+        return ResponseEntity.badRequest().body(error);
     }
 }
