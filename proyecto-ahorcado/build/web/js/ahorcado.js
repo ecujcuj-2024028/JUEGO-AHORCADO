@@ -30,12 +30,30 @@ function iniciarTemporizador() {
                 document.getElementById("tempo").innerHTML = tiempoRestante + " segundos";
                 tiempoRestante--;
             } else {
+                perderPorTiempo();
                 document.getElementById("tempo").innerHTML = "0 segundos";
-                window.alert("Perdiste el juego :(");
                 clearInterval(temporizador);
+                
             }
         }
     }, 1000);
+}
+
+function perderPorTiempo() {
+    pausarTemporizador();
+    document.getElementById("msg-final").innerHTML = "Game Over: se acabó el tiempo";
+    document.getElementById("msg-final").className += "zoom-in";
+    hueco.innerHTML = "La palabra es: " + palabra;
+
+    for (let i = 0; i < buttons.length; i++) {
+        buttons[i].disabled = true;
+    }
+
+    document.getElementById("reinicio").innerHTML = "Empezar de nuevo";
+    btnInicio.onclick = function () { inicio(); };
+
+    imagen.style.opacity = "1";
+    imgPalabra.style.display = "block";
 }
 
 function pausarTemporizador() {
