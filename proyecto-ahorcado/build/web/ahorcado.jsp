@@ -16,6 +16,9 @@
         <link rel="stylesheet" href="css/estilo-ahorcado.css"/>
     </head>
     <body>
+        <video autoplay muted loop id="bgVideo">
+                <source src="video/fondo.mp4" type="video/mp4">
+        </video>
         
         <header>
             <nav class="navbar navbar-light bg-light">
@@ -27,7 +30,7 @@
           </nav>
         </header>
         
-        <div class="contenedor-principal">
+        <div class="contenedor-principal">                      
             <h1 class="titulo">Juego del ahorcado</h1>
             <button onclick="pausarTemporizador()" id="stop">Pausar</button>
             <button onclick="reanudarTemporizador()" id="reanudar">Reanudar</button>
