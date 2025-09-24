@@ -45,7 +45,7 @@ public class PalabraServiceImpl implements PalabraService{
         if (palabra.getPista1() == null || palabra.getPista1().isBlank() ||
                 palabra.getPista2() == null || palabra.getPista2().isBlank() ||
                 palabra.getPista3() == null || palabra.getPista3().isBlank()) {
-            throw new IllegalArgumentException("Las pistas son obligatorias");
+            throw new IllegalArgumentException("Todas las pistas son obligatorias");
         }
         if (palabra.getImagen()== null || palabra.getImagen().isBlank()){
                 palabra.setImagen("default.png");
@@ -69,7 +69,10 @@ public class PalabraServiceImpl implements PalabraService{
             throw new IllegalArgumentException("Las pistas son obligatorias");
         }
         if (palabraRepository.findById(id).isEmpty()){
-            throw new IllegalArgumentException("La palabra no existe");
+            throw new IllegalArgumentException("No se encontro palabra con el id: "+ id);
+        }
+        if (palabra.getImagen()== null || palabra.getImagen().isBlank()){
+            palabra.setImagen("default.png");
         }
         Palabra existente = palabraRepository.findById(id).orElse(null);
         if (existente != null){
